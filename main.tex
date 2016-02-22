@@ -1,0 +1,32 @@
+\documentclass[a4paper, fleqn]{extreport}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+
+%\usepackage{euler}
+\usepackage{geometry}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\newcounter{dummy}
+\numberwithin{dummy}{section}
+%\theoremstyle{definition}
+\newtheorem{przyklad}[dummy]{Przyk\l{}ad}
+\newtheorem{fakt}[dummy]{Fakt}
+\newtheorem{lemat}[dummy]{Lemat}
+\newtheorem{definicja}[dummy]{Definicja}
+\newtheorem{wniosek}[dummy]{Wniosek}
+\newtheorem{twierdzenie}[dummy]{Twierdzenie}
+
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\selectlanguage{polish}
+
+\author{R. S}
+\title{Liczby $p$-adyczne}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\include{src/lemat_hensela}
+\end{document}

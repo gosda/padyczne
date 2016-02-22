@@ -1,0 +1,52 @@
+\chapter{Lemat Hensela}
+
+\begin{twierdzenie}[lemat Hensela]
+	Niech $\mathfrak K$ będzie ciałem zupełnym względem wartości bezwzględnej $|\cdot|$ i niech $f(X) \in \mathfrak O[X]$.
+	Załóżmy, że $a_0 \in \mathfrak O$ spełnia nierówność $|f(a_0)| < |f'(a_0)|^2$, gdzie $f'(X)$ jest (formalną) pochodną.
+	Wtedy istnieje $a \in \mathfrak O$, taki że $f(a) = 0$.
+\end{twierdzenie}
+
+\begin{proof}
+	Niech wielomiany $f_j(X)$ (dla $j = 1, 2, \ldots$) będą zdefiniowane przez tożsamość
+	\[
+		f(X + Y) = f(X) + \sum_{j \ge 1} f_j(X) Y^j
+	\]
+	dla niezależnych niewiadomych $X$, $Y$.
+	Wtedy $f_1(X) = f'(X)$.
+	Ponieważ $|f(a_0)| < |f'(a_0)|^2$, istnieje $b_0 \in \mathfrak O$, takie że $f(a_0) + b_0 f_1(a_0) = 0$.
+	Istotnie,
+	\[
+		|b_0| = \left|\frac{- f(a_0)}{f_1(a_0)} \right| = \frac{|f(a_0)|}{|f_1(a_0)|} < \frac{|f'(a_0)|^2}{|f'(a_0)|} = |f'(a_0)| \le 1.
+	\]
+	Zgodnie z definicją wielomianów $f_j$ zachodzi relacja
+	\[
+		|f(a_0 + b_0)| \le \max_{j \ge 2} |f_j(a_0) b_0^j|.
+	\]
+	Jako że $f_j(X) \in \mathfrak O[X]$ i $a_0 \in \mathfrak O$, mamy $|f_j(a_0)| \le 1$.
+	Oznacza to, że 
+	\[
+		|f(a_0 + b_0)| \le |b_0^2| = \frac{|f(a_0)|^2}{|f'(a_0)|^2} < |f(a_0)|,
+	\]
+	skorzystaliśmy tu ponownie z nierówności $|f(a_0)| < |f'(a_0)|^2$.
+
+	Podobnie pokazuje się, że
+	\[
+		|f_1(a_0 + b_0) - f_1(a_0)| \le |b_0| < |f_1(a_0)|,
+	\]
+	a przez to
+	\[
+		|f_1(a_0 + b_0)| = |f_1(a_0)|.
+	\]
+	Kładziemy teraz $a_1 = a_0 + b_0$ i powtarzamy proces.
+	Otrzymujemy w ten sposób ciąg $a_n = a_{n- 1} + b_{n- 1}$.
+	Dla każdego $n$ prawdziwa jest równość $|f_1(a_n)| = |f_1(a_0)|$, jednocześnie
+	\[
+		|f(a_{n+1})| \le \frac{|f(a_n)|^2}{|f_1(a_n)|^2} = \frac{|f(a_n)|^2}{|f_1(a_0)|^2} % \le |f(a_n)|^2 \cdot \frac{1}{|f_1(a_0)|^2} \le (\frac{|f(a_{n-1})|^2}{|f_1(a_0)|^2})^2 \cdot \frac{1}{|f_1(a_0)|^2}
+	\]
+	To uzasadnia zbieżność $f(a_n)$ do zera.
+	Co więcej,
+	\[
+		|a_{n+1} - a_n| = |b_n| = \frac{|f(a_n)|}{|f_1(a_n)|} = \frac{|f(a_n)|}{|f_1(a_0)|} \to 0.
+	\]
+	Ciąg $\{a_n\}$ jest fundamentalny, z zupełności ciała $\mathfrak K$ wynika istnienie jego granicy oraz $f(a) = 0$.
+\end{proof}
