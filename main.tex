@@ -21,12 +21,96 @@
 \usepackage[T1]{fontenc}
 \selectlanguage{polish}
 
-\author{R. S}
+\author{R. S.}
 \title{Liczby $p$-adyczne}
 
 \begin{document}
 \maketitle
 \tableofcontents
 
+\begin{definicja}
+Norma na ciele $\mathcal K$ to funkcja $| \cdot | \colon \mathcal K \to \mathbb R_+$ spełniająca trzy warunki:
+\begin{enumerate}
+\item $|x| = 0$, wtedy i tylko wtedy gdy $x = 0$
+\item $|xy| = |x|\, |y|$ dla wszystkich $x, y \in \mathcal K$
+\item $|x+y| \le |x| + |y|$ dla wszystkich $x, y \in \mathcal K$
+\end{enumerate}
+Mówimy, że norma jest niearchimedesowa, jeżeli zachodzi dodatkowo
+\begin{enumerate}
+\item [4.] $|x+y| \le \max(|x|,|y|)$ dla wszystkich $x, y \in \mathcal K$,
+\end{enumerate}
+w przeciwnym razie mamy do czynienia z normą archimedesową.
+\end{definicja}
+
+\begin{definicja}
+Waluacja $p$-adyczna (dla ustalonej liczby pierwszej $p \in \mathbb Z$) to funkcja $v_p \colon \mathbb Z \setminus \{0\} \to \mathbb R$ określona w następujący sposób: $v_p(n)$ to jedyna dodatnia liczba całkowita, dla której zachodzi równość $n = p^{v_p(n)} n'$, przy czym $p$ nie dzieli $n'$.
+Przedłuża się ją do całego ciała $\mathbb Q$ wzorem
+	\[
+		v_p\left(\dfrac a b\right) = v_p(a) - v_p(b),
+	\]
+	z umową, że $v_p(0) = + \infty$.
+\end{definicja}
+
+Tak określona funkcja jest dobrze określona.
+
+\begin{lemat}
+Dla wszystkich $x$ oraz $y \in \mathbb Q$ mamy
+\begin{enumerate}
+\item $v_p(xy) = v_p(x) + v_p(y)$
+\item $v_p(x + y) \ge \min(v_p(x), v_p(y))$.
+\end{enumerate}
+\end{lemat}
+
+
+\begin{definicja}
+	Dla dowolnej liczby wymiernej $x \neq 0$ określamy jej normę $p$-adyczną przez wzór $|x|_p = p^{-v_p(x)}$.
+	Dodatkowo $|0|_p = 0$.
+\end{definicja}
+
+\begin{fakt}
+	Tak określona norma jest niearchimedesowa.
+\end{fakt}
+
+\begin{fakt}
+Norma na ciele jest niearchimedesowa, wtedy i tylko wtedy gdy $|a| \le 1$ dla wszystkich $a \in \mathbb Z$.
+\end{fakt}
+
+\begin{fakt}
+	W ciele z niearchimedesową normą ,,$x, y \in \mathcal K$, $|x| \neq |y|$'' pociąga ,,$|x+y| = \max (|x|, |y|)$''.
+\end{fakt}
+
+Kule otwarte i domknięte -- topologia.
+
+Równoważność dwóch norm na ciele.
+
+Klasyfikacja norm z twierdzenia Ostrowskiego.
+
+Ciała $\mathbb Q$ nie są zupełne -- uzupełnianie.
+
+,,Product formula''
+
+Lemat Hensela.
+
+\newpage
+
 \include{src/lemat_hensela}
+
+\newpage
+
+Analiza?
+\begin{enumerate}
+\item Zbieżność szeregu $\iff$ wyraz dąży do zera
+\item Zbieżność jednostajna, zastosowanie do $\exp_2(2x^2 - 2x)$
+\end{enumerate}
+
+Budowa rozszerzeń, $\mathbb C_p$, $\Omega_p$.
+
 \end{document}
+
+\begin{enumerate}
+\item Definicja normy, niearchimedesowej lub nie
+\item Konstrukcja ciała $\mathbb Q_p$
+\item Lemat Hensela, analogia do metody Newtona
+\item Twierdzenie faktoryzacyjne, Straßmanna
+\item Zbieżność podwójnych sum
+\end{enumerate}
