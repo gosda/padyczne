@@ -1,0 +1,80 @@
+\section{Uzupełnianie}
+
+\begin{lemat}
+	Ciało $\Q$ z nietrywialną normą nie jest zupełne.
+\end{lemat}
+
+\begin{proof}
+	Dzięki twierdzeniu Ostrowskiego wystarczy sprawdzić $p$-adyczne normy.
+	Niech $p \neq 2$ będzie pierwsza, zaś $a \in \Z$ taka, że nie jest kwadratem, nie dzieli się przez $p$ i równanie $x^2 = a$ ma rozwiązanie w $\Z/p\Z$.
+	Konstruujemy ciąg Cauchy'ego bez granicy: $x_0$ jest dowolnym rozwiązaniem równania, $x_n$ ma być równe $x_{n-1}$ modulo $p^n$ oraz $x_n^2 = a$ (modulo $p^{n+1}$).
+	Jest Cauchy'ego ($|x_{n+1} - x_n| = |\lambda p^{n+1}| \le p^{-n+1} \to 0$) i nie ma granicy (kandydatem na nią jest pierwiastek z $a$, gdyż prosty rachunek pokazuje $|x_n^2 - a| = |\mu p^{n+1}| \le p^{-n+1} \to 0$).
+	Gdy $p = 2$, to zastępujemy pierwiastek  sześciennym.
+\end{proof}
+
+Zbiór ciągów Cauchy'ego oznaczmy przez $C$.
+Można na nim zadać strukturę pierścienia (przemienego i z jedynką) przez punktowe dodawanie oraz mnożenie.
+Wprowadzamy ideał $N$, do którego należą ciągi zbieżne do zera.
+
+\begin{lemat}
+	Zbiór $N$ jest ideałem maksymalnym $C$.
+\end{lemat}
+
+\begin{proof}
+Ustalmy ciąg $(x_n) \in C \setminus N$ oraz ideał $I = \langle (x_n), N \rangle$.
+Od pewnego miejsca $x_n$ nie jest zerem, zatem $y_n = 1/x_n$ od tego miejsca i $y_n = 0$ ma sens.
+Ciąg $y_n$ jest Cauchy'ego:
+\[
+	|y_{n+1} - y_n| = \frac{|x_{n+1} - x_n|}{|x_nx_{n+1}|} \le \frac{|x_{n+1}-x_n|}{c^2} \to 0.
+\]
+Ale $(1) - (x_n)(y_n) \in N$, to kończy dowód ($I = C$).
+\end{proof}
+
+\begin{definicja}
+	Ciało liczb $p$-adycznych to $\Q_p := C  / N$.
+\end{definicja}
+
+\begin{lemat}
+	Ciąg $|x_n|_p$ jest stacjonarny, gdy $(x_n) \in C \setminus N$.
+\end{lemat}
+
+\begin{proof}
+	Można znaleźć takie liczby $c, N_1$, że $n \ge N_1$ pociąga $|x_n| \ge c > 0$.
+	Z drugiej strony istnieje taka $N_2$, że $n, m \ge N_2$ pociąga $|x_n - x_m| < c$.
+	Połóżmy więc $N = \max\{N_1, N_2\}$.
+	Wtedy $n, m \ge N$ pociąga $|x_n - x_m| < \max\{|x_n|, |x_m|\}$, a to oznacza, że $|x_n| = |x_m|$.
+\end{proof}
+
+Dzięki temu następująca definicja nie jest bez sensu:
+
+\begin{definicja}
+	Gdy $(x_n) \in C$ reprezentuje $\lambda \in \Q_p$, przyjmujemy $|\lambda|_p := \lim_{n \to \infty} |x_n|_p$.
+\end{definicja}
+
+\begin{lemat}
+	Obraz $\Q \hookrightarrow \Q_p$ po włożeniu jest gęsty.
+\end{lemat}
+
+\begin{proof}
+	Chcemy pokazać, że każda otwarta kula wokół $\lambda \in \Q_p$ kroi się z obrazem $\Q$, czyli zawiera ,,stały ciąg''.
+	Ustalmy kulę $B(\lambda, \varepsilon)$, ciąg Cauchy'ego $(x_n)$ dla $\lambda$ i $\varepsilon' < \varepsilon$.
+	Dzięki temu, że ciąg jest Cauchy'ego, możemy znaleźć dla niego indeks $N$, że $n, m \ge N$ pociąga $|x_n - x_m| < \varepsilon'$.
+	Rozpatrzmy stały ciąg $(y)$ dla $y = x_N$.
+	Wtedy $|\lambda - (y)| < \varepsilon$, gdyż $\lambda - (y)$ odpowiada ciąg $(x_n-y)$.
+	Ale $|x_n - x_N| < \varepsilon'$ i w granicy
+	\[
+		\lim_{n \to \infty}|x_n - y| \le \varepsilon' < \varepsilon. \qedhere
+	\]
+\end{proof}
+
+\begin{fakt}
+	Ciało $\Q_p$ jest zupełne.
+\end{fakt}
+
+\begin{proof} Dowód w czterech krokach:
+	\begin{enumerate}
+		\item Niech $\lambda_k$ będzie ciągiem Cauchy'ego elementów $\Q_p$. \item Skoro obraz $\Q$ w $\Q_p$ jest gęsty, to można znaleźć liczby wymierne $l_k$, że $\lim_{n \to \infty} |\lambda_n - (l_n)| = 0$: granica w $\Q_p$!
+		\item Wybrane wcześniej liczby wymierne $l_n$ same tworzą ciąg Cauchy'ego w $\Q$; dążą do $\lambda$ w $\Q_p$.
+		\item Zachodzi $\lim_{n \to \infty} \lambda_n = \lambda$. \qedhere
+	\end{enumerate}
+\end{proof}

@@ -1,0 +1,71 @@
+\section{Normy}
+\begin{definicja}
+	Norma na ciele $K$ to funkcja $|\cdot| \colon K \to \R_+$ spełniająca trzy warunki:
+	\begin{enumerate}
+		\item $|x| = 0$, wtedy i tylko wtedy gdy $x = 0$
+		\item $|xy| = |x|\, |y|$ dla wszystkich $x, y \in K$
+		\item $|x+y| \le |x| + |y|$ dla wszystkich $x, y \in K$
+	\end{enumerate}
+	Mówimy, że norma jest niearchimedesowa, jeżeli zachodzi dodatkowo
+	\begin{enumerate}
+		\item [4.] $|x+y| \le \max(|x|,|y|)$ dla wszystkich $x, y \in K$,
+	\end{enumerate}
+	w przeciwnym razie mamy do czynienia z normą archimedesową.
+\end{definicja}
+
+\begin{definicja}
+	Waluacja $p$-adyczna (dla ustalonej liczby pierwszej $p \in \Z$) to funkcja $v_p \colon \Z \setminus \{0\} \to \R$ określona w następujący sposób: $v_p(n)$ to jedyna dodatnia liczba całkowita, dla której zachodzi równość $n = p^{v_p(n)} n'$, przy czym $p$ nie dzieli $n'$.
+	Przedłuża się ją do całego ciała $\Q$ wzorem
+	\[
+		v_p\left(\dfrac a b\right) = v_p(a) - v_p(b),
+	\]
+	z umową, że $v_p(0) = + \infty$.
+\end{definicja}
+
+Tak określona funkcja jest dobrze określona (udowodnić).
+
+\begin{lemat}
+	Dla wszystkich $x$ oraz $y \in \Q$ mamy
+	\begin{enumerate}
+		\item $v_p(xy) = v_p(x) + v_p(y)$
+		\item $v_p(x + y) \ge \min(v_p(x), v_p(y))$.
+	\end{enumerate}
+\end{lemat}
+
+\begin{definicja}
+	Dla dowolnej liczby wymiernej $x \neq 0$ określamy jej normę $p$-adyczną przez wzór $|x|_p = p^{-v_p(x)}$.
+	Dodatkowo $|0|_p = 0$.
+\end{definicja}
+
+\begin{fakt}
+	Tak określona norma jest niearchimedesowa.
+\end{fakt}
+
+\begin{fakt}
+	Norma na ciele $K$ jest niearchimedesowa, wtedy i tylko wtedy gdy $|a| \le 1$ dla wszystkich $a \in \Z$ (po włożeniu w $K$).
+\end{fakt}
+
+\begin{fakt}
+	W ciele z niearchimedesową normą ,,$x, y \in K$, $|x| \neq |y|$'' pociąga ,,$|x+y| = \max (|x|, |y|)$''.
+\end{fakt}
+
+\begin{proof}
+	$\|x\| > \|y\|$ pociąga $\|x+y\| \le \|x\| = \max\{\|x\|,\|y\|\}$.
+	Ale $x = x+y-y$, więc $\|x\| \le \max \{\|x+y\|, \|y\|\}$.
+	Nierówność zachodzi tylko wtedy, gdy $\max\{\|x+y\|, \|y\|\} = \|x+y\|$.
+	To daje $\|x\| \le \|x+y\|$.
+\end{proof}
+
+\begin{fakt}
+	W niearchimedesowym ciele $K$ każdy punkt kuli (otwartej, domkniętej) jest jej środkiem.
+	Jeśli $ r > 0$, to kula jest otwarnięta.
+	Dwie kule (domknięte, otwarte) są rozłączne lub zawarte jedna w drugiej.
+\end{fakt}
+
+\begin{proof}
+	\begin{enumerate}
+		\item Jeśli $b \in B(a, r)$, to $\|b-a\| < r$. Biorąc dowolny $x$, że $|x-a| < r$, dostajemy $|x-b| < r$ (niearchimedesowo), zatem $B(a,r) \subset B(b,r)$. Podobnie w drugą stronę.
+		\item Każda otwarta kula jest otwartym zbiorem. Weźmy $x$ z brzegu $B(a,r)$, do tego $s \le r$. Wtedy pewien $y$ jest w $B(a,r) \cap B(x,s)$ (przekrój jest niepusty). To oznacza, że $|y-a| < r$ oraz $|y - x| < s \le r$, więc $|x-s| \le r$ i $x \in B(a,r)$.
+		\item Weźmy nierozłączne $B(a,r)$, $B(b,s)$, że $r \le s$. Wtedy pewien $c$ leży w obydwu kulach. Ale $B(a,r) = B(c,r)$ zawiera się w $B(c,s) = B(b,s)$. \qedhere
+	\end{enumerate}
+\end{proof}
