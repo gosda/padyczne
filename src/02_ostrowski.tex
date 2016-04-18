@@ -1,17 +1,19 @@
 \section{Twierdzenie Ostrowskiego}
+\begin{definicja}
+	Dwie normy na ciele są równoważne, jeżeli metryki od nich generują tę samą topologię
+\end{definicja}
+
 \begin{lemat}
-	Wartości bezwzględne $\|\cdot\|_i$ na $K$ są równoważne wtedy i tylko wtedy, gdy $\|x\|_1 < 1 \Leftrightarrow \|x\|_2<1$ (inaczej: dla pewnej $\alpha > 0$ i każdego $x$ zachodzi $\|x\|_1 = \|x\|_2^\alpha$).
-	Tutaj $i = 1, 2$.
+	Normy $\|\cdot\|_i$ (dla $i \in \{1,2 \}$) na $K$ są równoważne wtedy i tylko wtedy, gdy $\|x\|_1 < 1 \Leftrightarrow \|x\|_2<1$ wtedy i tylko wtedy, gdy dla pewnej $\alpha > 0$ i każdego $x$ zachodzi $\|x\|_1 = \|x\|_2^\alpha$.
 \end{lemat}
 
 \begin{proof}
-	Dowód polegał będzie na pokazaniu ciągu implikacji.
-	\begin{itemize}
-		\item [$3 \Rightarrow 1$] $\|x-a\|_1 < r$ wtedy i tylko wtedy, gdy $\|x-a\|_2 < r^{1/\alpha}$; ,,otwarte kule są nadal otwarte''. 
-		\item [$1 \Rightarrow 2$] Dla równoważnych wartości bezwzględnych mamy jedną zbieżność; $\lim_n x^n = 0$ jest równoważne $\|x\| < 1$.
-		\item [$2 \Rightarrow 3$] 	Wybierzmy $x_0 \in K$ różne od $0$, że $|x_0|_1 < 1$.
+	Pokażemy trzy implikacje.
+
+	($1 \implies 2$) Równoważne normy zadają te same ciągi zbieżne, $\lim_n x^n = 0$ jest równoważne $\|x\| < 1$.
+
+	($2 \implies 3$) Wybierzmy $x_0 \in K$ różne od $0$, że $|x_0|_1 < 1$.
 	Warunek nr 2 mówi, że $|x_0|_2$ też jest mniejsze od jeden, czyli możemy wybrać $\alpha > 0$ takie, żeby $|x_0|_1 = |x_0|_2^\alpha$.
-	\end{itemize}
 
 	Wybierzmy jeszcze jeden $x \in K \setminus \{0\}$.
 	Jeśli $|x|_1 = |x_0|_1$, to $|x|_2 = |x_1|_2$ (gdyby tak nie było, to normy ilorazów byłyby zepsute).
@@ -28,6 +30,8 @@
 
 	Oznacza to, że ułamki po prawych stronach są równe.
 	Po podłożeniu $|x_0|_1 = |x_0|_2^\alpha$ okaże się, że rzeczywiście $\alpha = \beta$.
+
+	($3 \implies 1$) $\|x-a\|_1 < r$ wtedy i tylko wtedy, gdy $\|x-a\|_2 < r^{1/\alpha}$.
 \end{proof}
 
 \begin{twierdzenie}[Ostrowski, 1916]
@@ -42,7 +46,7 @@
 	Wystarczy uzasadnić, dlaczego $|x| = |x|_\infty^\alpha$ dla każdej $x \in \Q$, a właściwie tylko dla $x \in \Z_{>0}$ (bo norma jest multiplikatywna).
 	Dowolną liczbę $n$ można zapisać w systemie o podstawie $n_0$: $n = a_0 + a_1 n_0 + \dots + a_kn_0^k$, gdzie $a_k \neq 0$ i $0 \le a_i \le n_0-1$.
 	\begin{align*}
-	|n| & = \left|\sum_{i=0}^k a_in_0^i\right| \le \sum_{i=0}^k \left|a_i\right| n_0^{i \alpha} \le n_0^{k \alpha} \sum_{i = 0}^k n_0^{-i \alpha} \\ & \le n_0^{k \alpha} \sum_{i = 0}^\infty n_0^{-i \alpha} = n_0^{k \alpha} \frac{n_0^\alpha}{n_0^\alpha - 1} = C n_0^{k \alpha}
+	|n| & = \left|\sum_{i=0}^k a_in_0^i\right| \le \sum_{i=0}^k \left|a_i\right| n_0^{i \alpha} \le n_0^{k \alpha} \sum_{i = 0}^k n_0^{-i \alpha} \le n_0^{k \alpha} \sum_{i = 0}^\infty n_0^{-i \alpha} = n_0^{k \alpha} \frac{n_0^\alpha}{n_0^\alpha - 1} = C n_0^{k \alpha}
 	\end{align*}
 
 	Pokazaliśmy $|n| \le Cn_0^{k \alpha} \le C n^\alpha$ dla każdego $n$, a więc w szczególności dla liczb postaci $n^N$ (bowiem $C$ nie zależy od $n$): $|n| \le C^{1/n}n^\alpha$.
@@ -61,8 +65,7 @@
 	Skorzystaliśmy tutaj z nierówności udowodnionej wyżej.
 	Wiemy, że $n \ge n_0^k$, więc prawdą jest, że
 	\begin{align*}
-		|n| & \ge n_0^{(k+1)\alpha} - (n_0^{k+1} - n_0^k)^\alpha \\
-		& = n_0^{(k+1) \alpha} [1 - (1 - \textstyle \frac{1}{n_0})^\alpha]  = C' n_0^{(k+1)\alpha} > C' n^\alpha.
+		|n| & \ge n_0^{(k+1)\alpha} - (n_0^{k+1} - n_0^k)^\alpha = n_0^{(k+1) \alpha} [1 - (1 - \textstyle \frac{1}{n_0})^\alpha]  = C' n_0^{(k+1)\alpha} > C' n^\alpha.
 	\end{align*}
 
 	Od $n$ nie zależy $C' = 1 - (1-1/n_0)^\alpha$, jest dodatnia i przez analogię do poprzedniej sytuacji możemy pokazać $|n| \ge n^\alpha$.

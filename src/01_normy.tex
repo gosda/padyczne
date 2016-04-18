@@ -22,15 +22,35 @@
 	z umową, że $v_p(0) = + \infty$.
 \end{definicja}
 
-Tak określona funkcja jest dobrze określona (udowodnić).
+Tak określona funkcja jest dobrze określona.
+
+\begin{proof}
+	Jeśli $a / b =c / d$, to $ad = bc$.
+	Rozkład na czynniki pierwsze w $\Z$ jest jednoznaczny, zatem najwyższa potęga $p$ dzieląca $ad$ to suma najwyższych potęg dzielących $a$ i $d$, $v_p(ad) = v_p(a) + v_p(d)$.
+	Podobnie pokazuje się, że $v_p(bc) = v_p(b) + v_p(c)$.
+	Skoro $v_p(ad) = v_p(bc)$, to $v_p(a) + v_p(d) = v_p(b) + v_p(c)$ i po przeporządkowaniu $v_p(a) - v_p(b) = v_p(c) - v_p(d)$.
+\end{proof}
 
 \begin{lemat}
-	Dla wszystkich $x$ oraz $y \in \Q$ mamy
+	Dla wszystkich $x, y \in \Q$ mamy
 	\begin{enumerate}
 		\item $v_p(xy) = v_p(x) + v_p(y)$
 		\item $v_p(x + y) \ge \min(v_p(x), v_p(y))$.
 	\end{enumerate}
 \end{lemat}
+
+\begin{proof}
+	Załóżmy najpierw, że $x, y$ są całkowite, a przy tym $x = p^n x'$, $y = p^m y'$ (gdzie $p \nmid x'y'$).
+	Bez straty ogólności $n \le m$, wtedy $xy = p^{n + m} x'y'$ (co pokazuje 1.) i $x + y = p^n(x' + p^{m-n}y')$, więc $v_p(x + y) \ge n = v_p(x)$ (2.).
+
+	Jeżeli $x = q/r$ i $y = s/t$, to $v_p(xy) = v_p(qs/rt) = v_p(qs) - v_p(rt) = v_p(q) +v_p(s) - v_p(r) - v_p(t) = v_p(q/r) + v_p(s/t) = v_p(x)  + v_p(y)$.
+	Dowód drugiej części:
+	\begin{align*}
+		v_p(x + y) & = v_p (\frac{qt + sr}{rt}) = v_p(qt + sr) - v_p(rt) \le \min(v_p(qt), v_p(sr)) - v_p(rt) \\
+		& = \min(v_p(qt) - v_p(rt), v_p(sr) - v_p(rt)) = \min(v_p(qt/rt), v_p(sr / rt)) \\
+		& = \min(v_p(x), v_p(y)).
+	\end{align*}
+\end{proof}
 
 \begin{definicja}
 	Dla dowolnej liczby wymiernej $x \neq 0$ określamy jej normę $p$-adyczną przez wzór $|x|_p = p^{-v_p(x)}$.
@@ -41,9 +61,23 @@ Tak określona funkcja jest dobrze określona (udowodnić).
 	Tak określona norma jest niearchimedesowa.
 \end{fakt}
 
+Wynika to z dopiero co udowodnionego lematu.
+
 \begin{fakt}
 	Norma na ciele $K$ jest niearchimedesowa, wtedy i tylko wtedy gdy $|a| \le 1$ dla wszystkich $a \in \Z$ (po włożeniu w $K$).
 \end{fakt}
+
+\begin{proof}
+	Implikacja w jedną stronę jest oczywista: $\|\pm 1\| = 1$ pociąga $\|n \pm 1\| \le \max \{\|n\|, 1\}$ i indukcja kończy dowód.
+	Udowodnimy teraz wynikanie w lewo.
+	Ponieważ $\|x + y\| \le \max \{\|x\|, \|y\|\}$ jest oczywista dla $y = 0$, wystarczy dowieść $\|t+1\| \le \max \{\|t\|, 1\}$ ($t \in K$).
+	Dla $m \in \N$:
+	\begin{align*}
+		\|z+1\|^m & = \left\|\sum_{j=0}^m {m \choose j} z^j \right\| \le \sum_{j=0}^m \left\| {m \choose j} z^j \right\| \le \sum_{j=0}^m \|z\|^j \\
+		& \le (m+1) \max \{1, \|z\|^m\}
+	\end{align*}
+	Przechodzimy z $m$ do $\infty$ po spierwiastkowaniu.
+\end{proof}
 
 \begin{fakt}
 	W ciele z niearchimedesową normą ,,$x, y \in K$, $|x| \neq |y|$'' pociąga ,,$|x+y| = \max (|x|, |y|)$''.
@@ -63,9 +97,9 @@ Tak określona funkcja jest dobrze określona (udowodnić).
 \end{fakt}
 
 \begin{proof}
-	\begin{enumerate}
-		\item Jeśli $b \in B(a, r)$, to $\|b-a\| < r$. Biorąc dowolny $x$, że $|x-a| < r$, dostajemy $|x-b| < r$ (niearchimedesowo), zatem $B(a,r) \subset B(b,r)$. Podobnie w drugą stronę.
-		\item Każda otwarta kula jest otwartym zbiorem. Weźmy $x$ z brzegu $B(a,r)$, do tego $s \le r$. Wtedy pewien $y$ jest w $B(a,r) \cap B(x,s)$ (przekrój jest niepusty). To oznacza, że $|y-a| < r$ oraz $|y - x| < s \le r$, więc $|x-s| \le r$ i $x \in B(a,r)$.
-		\item Weźmy nierozłączne $B(a,r)$, $B(b,s)$, że $r \le s$. Wtedy pewien $c$ leży w obydwu kulach. Ale $B(a,r) = B(c,r)$ zawiera się w $B(c,s) = B(b,s)$. \qedhere
-	\end{enumerate}
+	Jeśli $b \in B(a, r)$, to $\|b-a\| < r$. Biorąc dowolny $x$, że $|x-a| < r$, dostajemy $|x-b| < r$ (niearchimedesowo), zatem $B(a,r) \subset B(b,r)$. Podobnie w drugą stronę.
+	
+	Każda otwarta kula jest otwartym zbiorem. Weźmy $x$ z brzegu $B(a,r)$, do tego $s \le r$. Wtedy pewien $y$ jest w $B(a,r) \cap B(x,s)$ (przekrój jest niepusty). To oznacza, że $|y-a| < r$ oraz $|y - x| < s \le r$, więc $|x-s| \le r$ i $x \in B(a,r)$.
+	
+	Weźmy nierozłączne $B(a,r)$, $B(b,s)$, że $r \le s$. Wtedy pewien $c$ leży w obydwu kulach. Ale $B(a,r) = B(c,r)$ zawiera się w $B(c,s) = B(b,s)$.
 \end{proof}

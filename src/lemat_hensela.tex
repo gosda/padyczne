@@ -1,4 +1,4 @@
-\chapter{Lemat Hensela}
+\section{Lemat Hensela}
 
 \begin{twierdzenie}[lemat Hensela]
 	Niech $\mathfrak K$ będzie ciałem zupełnym względem wartości bezwzględnej $|\cdot|$ i niech $f(X) \in \mathfrak O[X]$.
@@ -49,4 +49,374 @@
 		|a_{n+1} - a_n| = |b_n| = \frac{|f(a_n)|}{|f_1(a_n)|} = \frac{|f(a_n)|}{|f_1(a_0)|} \to 0.
 	\]
 	Ciąg $\{a_n\}$ jest fundamentalny, z zupełności ciała $\mathfrak K$ wynika istnienie jego granicy oraz $f(a) = 0$.
+\end{proof}
+
+\section{Analiza}
+
+\begin{fakt}
+	Ciąg $(x_n)$ o wyrazach w $\Q_p$ jest Cauchy'ego, wtedy i tylko wtedy gdy zachodzi $\lim_{n\to \infty}|x_{n+1} - x_n| = 0$.
+\end{fakt}
+
+\begin{proof}
+	Jeśli $m = n+r > n$, to $|x_m - x_n|$ można oszacować z góry,
+	$\left|\sum_{k=1}^r x_{n+k} - x_{n+k-1}\right| \le \max_{1 \le k \le r} |x_{n+k}-x_{n+k-1}|$,
+	bo wartość bezwzględna jest niearchimedesowa.
+\end{proof}
+
+\begin{fakt} \label{ingentis} %zielony
+	Dla $a_n \in \Q_p$, szereg $\sum_{n \ge 0} a_n$ jest zbieżny wtedy i tylko wtedy, gdy zachodzi $\lim_{n \to \infty} a_n = 0$.
+	Pociąga to prawdziwość oszacowania $|\sum_{n \ge 0} a_n| \le \max_n |a_n|$.
+\end{fakt}
+
+\begin{proof}
+	Jedna implikacja jest oczywista.
+	Szereg zbiega, gdy ciąg sum częściowych zbiega.
+	Ale wyraz $a_n$ to różnica między $n$-tą i $(n-1)$-szą sumą częściową -- jeśli zbiega do zera, to z faktu wyżej wynika, że ciąg sum częściowych jest Cauchy'ego, zatem zbieżny.
+	Nierówność rozszerza niearchimedesowskość.
+\end{proof}
+
+Aby zająć się podwójnymi sumami, potrzebujemy czegoś więcej niż tylko zbieżność do zera.
+
+\begin{definicja}
+	Jeśli dla każdej dodatniej liczby $\varepsilon$ istnieje całkowita $N$ niezależna od $j$, że $i \ge N$ pociąga $|b_{ij}| < \varepsilon$, to $\lim_{i \to \infty} b_{ij} = 0$ {jednostajnie} względem $j$.
+\end{definicja}
+
+\begin{lemat} \label{veteris}
+	Załóżmy, że $b_{ij} \in \Q_p$, zaś dla każdego $i$ zachodzi $\lim_{j\to \infty} b_{ij} = 0$ i (jednostajnie względem $j$) $\lim_{i \to \infty} b_{ij} = 0$. 
+	Dla każdego $\varepsilon$ istnieje $N_\varepsilon$ (zależna tylko od $\varepsilon$), że $\max \{i, j\} \ge N$ pociąga $|b_{ij}| < \varepsilon$.
+\end{lemat}
+
+\begin{proof}
+	Ustalmy $\varepsilon$.
+	Warunek I mówi, że dla każdego $i$ istnieje $N_1(i)$, dla którego $j \ge N_1(i)$ pociąga $|b_{ij}| < \varepsilon$.
+	Warunek II zapewnia istnienie takiego $N_0$, że $|b_{ij}| < \varepsilon$, o ile $i \ge N_0$.
+	Teraz określmy $N_\varepsilon = \max(N_0, N_1(0), N_1(1), \ldots, N_1(N_0-1))$.
+
+	Takie $N$ jest dobrym wyborem: gdy $\max \{i, j\} \ge N$, to albo $i \ge N_0$ i wiemy, że $|b_{ij}| < \varepsilon$ niezależnie od $i$; albo $ i < N_0$, zaś $j \ge N$.
+	Wtedy $0 \le i \le N_0 - 1$ i $j$ musi być większe od stosownego $N_1$, co znowu daje żądaną nierówność.
+\end{proof}
+
+\begin{fakt} \label{caedis}
+	Przy założeniach z lematu \ref{veteris} poniższe szeregi zbiegają, i to do tej samej liczby: $\sum_{i \ge 0} \sum_{j \ge 0} b_{ij}$, $\sum_{j \ge 0} \sum_{i \ge 0} b_{ij}$.
+\end{fakt}
+
+\begin{proof}
+	Lemat mówi, że każdemu $\varepsilon > 0$ odpowiada liczba $N$, dla której ,,$\max \{i, j\} \ge N$ pociąga $|b_{ij}| < \varepsilon$''.
+	Skoro ciąg $b_{ij}$ zbiega do zera po ustaleniu jednego z indeksów, to oba szeregi: $\sum_{j \ge 0} b_{ij}$ i $\sum_{i \ge 0} b_{ij}$ są zbieżne.
+
+	Dla $i \ge N$ zachodzi $|\sum_{j \ge 0} b_{ij}| \le \max_j |b_{ij}| < \varepsilon$ na mocy faktu \ref{ingentis}, podobna nierówność prawdziwa jest dla $j \ge N$.
+	Wnioskujemy stąd, że podwójne szeregi zbiegają, gdyż
+	\[
+		\lim_{i \to \infty} \sum_{j \ge 0} b_{ij} = \lim_{j \to \infty} \sum_{i \ge 0} b_{ij} = 0.
+	\]
+
+	Pozostało nam uzasadnić, że sumy są sobie równe.
+
+	Pozostańmy przy $N$, $\varepsilon$ wybranych wcześniej.
+	Oznacza to, że $|b_{ij}| < \varepsilon$, gdy $i \ge N$ lub $j \ge N$.
+	Zauważmy, że 
+	\[
+		\Bigl|\sum_{i, j \ge 0} b_{ij} - \sum_{i, j \le N} b_{ij} \Bigr| = 
+		\Bigl|\sum_{i \le N} \sum_{j > N} b_{ij} + \sum_{i > N} \sum_{j \ge 0} b_{ij} \Bigr|.
+	\]
+	Jeśli więc $j \ge N+1$, to $|b_{ij}| < \varepsilon$ dla każdego $i$, zatem pierwszy składnik pod wartością bezwzględną można (ultrametrycznie) oszacować z góry przez $\varepsilon$; podobnie szacuje się drugi składnik. Oczywiście zamiana $i, j$ miejscami nic nie psuje, więc możemy je przestawić i wywnioskować stąd równość sum.
+\end{proof}
+
+\begin{fakt} \label{auctoris}
+	Jeśli $g(x)$ zbiega, $f(g(x))$ zbiega i dla każdego $n$ jest $|b_n x^n| \le |g(x)|$, to $h(x)$ też zbiega, do $f(g(x))$.
+	\[
+	f(X) = \sum_{n \ge 0} a_nX^n \,\bullet\,
+	g(X) = \sum_{n \ge 0} b_nX^n
+\]
+\end{fakt}
+
+\begin{proof}
+	Podamy dowód za książką Hassego. Niech
+	\[
+		g(X)^m = \sum_{n \ge m} d_{m,n} X^n,
+	\]
+	przy czym $d_{m,n} = \sum_* \prod_{k=1}^m b_{i_k}$, zaś suma $i_1 + \ldots + i_m$ to $n$ (o ile $n \ge m$) i $d_{m,n} = 0$ (w przeciwnym przypadku).
+	Pozwala to na napisanie $h(X) = f(g(X))$ jawnie:
+	\[
+		h(X) = a_0 + \sum_{n \ge 1} \sum_{m \le n} a_m d_{m,n} X^n.
+	\]
+	Skoro $g(x)$ jest zbieżny, z faktu \ref{decoris} wnioskujemy, że formalny szereg $g(X)^m$ zbiega dla $X =x$ do $g(x)^m$.
+	Dla każdego $n$ mamy $|d_{m,n}x^n| \le |g(x)^m|$.
+	Jest to oczywiste dla $n < m$. Jeżeli $n \ge m$, to nierówność ultrametryczna daje dla $i_1 + \ldots + i_m = n$ (dzięki $|b_{ij} x^{ij}| \le |g(x)^m|$):
+	\[
+		|d_{m,n}x^n| \le \max_{\mbox{,,}i\mbox{''}} \prod_{k \le m} |b_{i_k} x^{i_k}| \le \prod_{k \le m} |g(x)| = |g(x)^m|.
+	\]
+
+	Wiemy już, że $g(x)$, $g(x)^m$ oraz $f(g(x))$ zbiegają.
+	Zapiszmy w takim razie
+	\begin{align*}
+	 	f(g(x)) & = a_0 + \sum_{m \ge 1} a_mg(x)^m \\
+	 	& = a_0 + \sum_{m \ge 1} \sum_{n \ge m} a_m d_{m,n}x^n,
+	\end{align*}
+	
+	a z drugiej strony
+	\[
+		h(x) = a_0 + \sum_{n \ge 1} \sum_{m \ge 1} a_md_{m,n} x^n.
+	\]
+
+	Aby uzasadnić poprawność zamiany kolejności sumowania powołamy się na fakt \ref{caedis} i oszacujemy $a_md_{m,n}x^n$.
+
+	Wiemy przede wszystkim, że $|a_md_{m,n}x^n| \le |a_mg(x)^m|$: prawa strona nie zależy od $n$.
+	Ustalmy $\varepsilon > 0$.
+	Możemy wybrać indeks $N$, taki że $m \ge N$ pociąga $|a_mg(x)^m| < \varepsilon$.
+	To pokazuje, że $a_md_{m,n}x^n \to_m 0$ jednostajnie względem $n$.
+
+	Z drugiej strony, dla każdego $m$ szereg $g(x)^m$ jest zbieżny, zatem jego wyraz ogólny zbiega do zera: $a_m d_{m,n}x^n \to 0$.
+\end{proof}
+
+\begin{przyklad}
+	Niech $g(X) = 2X^2 - 2X$ i $h(X) = f(g(X))$, gdzie $f(X) = \sum_{k \ge 0} \frac{1}{k!} X^k$.
+	Można pokazać, że $f$ zbiega dokładnie na $4 \Z_2$, zaś $g$ wszędzie (gdyż jest wielomianem).
+	Mamy oczywiście $f(g(1)) = 1$.
+	Niech $h(X) = \sum_n a_n X^n$.
+	Jeżeli $n \ge 2$, to $v_2(a_n)$ wynosi co najmniej $1 + n / 4$, czyli $h$ zbiega na $\Z_2$.
+	Niestety, $h(1) \equiv 3 \pmod {4}$ i $h(1) \neq f(g(1))$.
+\end{przyklad}
+
+\begin{twierdzenie}[Strassman, 1928]
+	Niech ciąg $a_n \in \Q_p$ dąży do zera i nie będzie stale równy zero.
+	Wtedy $f(X) = \sum_{n \ge 0} a_n X^n$ zbiega w $\Z_p$.
+	Określmy liczbę $N$ warunkami $|a_N| = \max_n |a_n|$ i $|a_n| < |a_N|$ dla $n > N$.
+	Funkcja $f \colon \Z_p \to \Q_p$, $x \mapsto f(x)$, ma co najwyżej $N$ zer.
+\end{twierdzenie}
+
+\begin{proof}
+	Indukcja względem $N$.
+	Jeżeli $N = 0$, to $|a_0| > |a_n|$ dla $n \ge 1$, z tego chcemy wywnioskować, że nie ma zer w $\Z_p$
+	Rzeczywiście, gdyby $f(x) = 0$, to
+	\[
+		|a_0| = |f(x) - a_0| \le \max_{n \ge 1}|a_nx^n| \le \max_{n \ge 1} |a_n| < |a_0|
+	\]
+	prowadzi do sprzeczności.
+	Krok indukcyjny.
+	Jeżeli znaleźliśmy już $N$ i $f(\alpha) = 0$ dla $\alpha \in \Z_p$, możemy wybrać dowolne $x \in \Z_p$.
+	Wtedy
+	\[
+		f(x) = f(x) - f(\alpha) = (x-\alpha) \sum_{n \ge 1} \sum_{j < n} a_n x^j \alpha^{n-1-j}
+	\]
+
+	Lemat \ref{caedis} pozwala na przegrupowanie:
+	\[
+		f(x) = (x - \alpha) \sum_{j \ge 0} b_j x^j \,\bullet\,
+		b_j = \sum_{k \ge 0} a_{j+1+k} \alpha^k
+	\]
+	
+	Widać, że $b_j \to 0$, nawet $|b_j| \le \max_{k \ge 0} |a_{j+k+1}| \le |a_N|$ dla każdego $j$, zatem $|b_{N-1}| = |a_N + a_{N+1}\alpha + \dots| = |a_N|$ i wreszcie dla $j \ge N$ zachodzi
+	\[
+		|b_j| \le \max_{k \ge 0}|a_{j+k+1}| \le \max_{j \ge N+1} |a_j| < |a_N|.
+	\]
+	Liczba z twierdzenia dla $f(X)/(X-\alpha)$ to $N-1$, koniec.
+\end{proof}
+
+\begin{definicja}
+		Logarytm: $\log_p (1+x) = \sum_{n \ge 1} (-1)^{n+1} \frac{x^n}{n}$.
+\end{definicja}
+
+Logarytm zbiega ,,gorzej'' niż $\log \colon \R_+ \to \R$.
+Policzymy jego promień zbieżności.
+Zauważmy, że $|1/n| = p^{v_p(n)}$, więc $\rho = 1$.
+Ale $|1/n|$ nie dąży do zera, więc zbieżność jest dla $|x| < 1$.
+
+\begin{lemat}
+	Mamy $\lim_{n \to \infty} p^{v_p(n)/n} = 1$, więc $\rho = 1$.
+\end{lemat}
+
+\begin{proof}
+	Jest jasne, że $\frac 1 n v_p(n) \le \frac 1 n \log_pn \to 0$.
+\end{proof}
+
+To wystarcza do zdefiniowania $p$-adycznego logarytmu.
+Niechże $\mathcal B =\mathcal B(1, 1) = 1+ p \Z_p$ ($= \{x \in \Z_p : |x-1| < 1\}$).
+By funkcja $\log_p \colon \mathcal B \to \Q_p$ zasługiwała na bycie logarytmem, musi mieć jego własności. Tak rzeczywiście jest.
+\[
+	\log_p(x) = f(x-1) = \sum_{n \ge 1} (-1)^{n+1} \frac{(x-1)^n}{n}
+\]
+
+\begin{fakt}
+	Dla $a, b \in 1+p\Z_p$ jest $\log_p(ab) = \log_p(a) + \log_p(b)$.
+\end{fakt}
+
+\begin{proof}
+	Przyjmijmy $f(x) = \log_p(1+x)$ dla $x \in \Z_p$.
+	Z naszą wiedzą o pochodnych szeregów potęgowych piszemy
+	\[
+		f'(x) = \sum_{n \ge 0} (-1)^nx^n = \frac{1}{1+x}.
+	\]
+	Ustalmy $y \in p\Z_p$ i określmy $g(x) = f(y + (1+y)x)$.
+	Jest to szereg potęgowy zbieżny dla $|x| < 1$.
+	Reguła łańcucha pozwala policzyć pochodną:
+	\begin{align*}
+		g'(x) & = (1+y) f'(y + (1+y)x)= \frac{(1+y)}{1+y + (1+y)x} \\
+		& = \frac{1}{1+x} = f'(x) \Rightarrow g(x) = f(x) + C.
+	\end{align*}
+	%To oznacza, że $g(x), f(x)$ różnią się o stałą.
+	Widać, że $g(0) = f(y)$, zatem $g(x) = f(x) + f(y)$, wystarczy przetłumaczyć to na język logarytmów.
+\end{proof}
+
+\begin{fakt}
+	Jeżeli $p > 2$, to $\log_p$ ma dokładnie jedno miejsce zerowe, $x = 1$.
+	Jeżeli $p = 2$, to $x = \pm 1$.
+\end{fakt}
+
+\begin{proof}
+	Twierdzenie Strassmana dla $\log(1+pX)$.
+\end{proof}
+
+W $\R$ szereg $\exp(X) = \sum_{n=0}^\infty X^n/n!$ zbiega wszędzie, bo $1/n!$ bardzo szybko maleje: ale nie w $\Q_p$.
+Trzeba więc określić tempo wzrostu tych współczynników.
+
+\begin{lemat}
+	Jeśli $p$ jest pierwsza, to $v_p(n!) < n : (p-1)$, więc $|n!|_p > p^{-n:(p-1)}$.
+\end{lemat}
+
+\begin{proof}
+	Nierówność jest prawdziwa, bo $\lfloor x \rfloor \le x$, czyli:
+	\[
+		v_p(n!) = \sum_{i=1}^\infty \left \lfloor \frac n {p^i} \right \rfloor \le \sum_{i=1}^\infty \frac n {p^i} = \frac n {p-1}. \qedhere
+	\]
+\end{proof}
+
+\begin{lemat}
+	Szereg $\sum_{n=0}^\infty \frac{{X^n}}{n!}$, eksponensa, zbiega wtedy i tylko wtedy gdy $|x| < p^{-1/(p-1)}$. 
+\end{lemat}
+
+\begin{proof}
+	Zachodzi $|a_n| = |1/n!| = p^{v_p(n!)} < p^{n/(p-1)}$ dzięki wcześniejszemu oszacowaniu, a zatem $\rho \ge p^{-1/(p-1)}$.
+	Szereg z pewnością jest zbieżny dla $|x| < p^{-1/(p-1)}$.
+	Z drugiej stony, gdy $|x| = p^{-1/(p-1)}$, zaś $n = p^m$, to $v_p(n!) = (n-1)/(p-1)$.
+	Skoro $v_p(x) = 1/(p-1)$, to poniższe wyrażenie nie zależy od $m$, czyli $x^n/n!$ nie dąży do zera (a sam szereg nie jest zbieżny).
+	Znajomość obszaru zbieżności kończy dowód lematu.
+	\[
+		v_p\left ( \frac{x^n}{n!}\right) = \frac{p^m}{p-1} - \frac{p^m-1}{p-1} = \frac{1}{p-1}. \qedhere
+	\]
+\end{proof}
+
+\begin{definicja}
+	Eksponensa $\exp_p \colon \mathcal B \to \Q_p$ jest określona na $p\Z_p$ (dla $p \neq 2$) lub $4\Z_2$ przez podany wcześniej szereg.
+\end{definicja}
+
+\begin{fakt}
+	Jeżeli $x, y, x+y \in \mathcal B(0, p^{-1/(p+1)})$, to $\exp(x+y)$ jest równe $\exp x \exp y$.
+\end{fakt}
+
+\begin{proof}
+	Dowód to po prostu formalna manipulacja szeregów.
+	\begin{align*}
+		L & = \exp_p(x+y) = \sum_{n \ge 0} \frac{(x+y)^n}{n!} = \\
+		% & = \sum_{n=0}^\infty \frac{1}{n!} \sum_{k=0}^n C^n_k x^{n-k} y^k \\
+		& = \sum_{n \ge 0} \sum_{k \le n} \frac{1}{n!} \frac{n!}{k!(n-k)!} x^{n-k}y^k \\
+		& = \sum_{n \ge 0} \sum_{k \le n} \frac{x^{n-k}}{(n-k)!} \frac{y^k}{k!} = \sum_{m \ge 0} \frac{x^m}{m!} \cdot \sum_{k \ge 0} \frac{y^k}{k!} \\
+		& = \exp_p(x) \exp_p(y) = R\qedhere
+	\end{align*}
+\end{proof}
+
+\begin{fakt}
+	Załóżmy, że jest $|x| < p^{-1/(p-1)}$ ($x \in \Z_p$). Zachodzi wtedy $\log_p (\exp_p x) = x$ oraz $\exp_p(\log_p (1+x)) = 1 + x$.
+\end{fakt}
+
+\begin{proof}
+	Bez straty ogólności $x \neq 0$.
+	Wstawiamy $\exp_p(x) - 1$ do $\log(1 + X)$.
+	Wiemy od początku, że $|x^n/n!| < |x|^n p^{n/(p-1)}$.
+	Skoro $|x| < p^{-1/(p-1)}$, to $|\exp_p(x) -1 | < 1$.
+	Można lepiej: dla $n \ge 2$ [$v_p(x) > 1/(p-1)$] jest $v_p(x^{n-1}/n!)$ równe:
+	\[
+		(n-1)v_p(x) - v_p(n!) > \frac{n-1}{p-1} - \frac{n-s}{p-1} > 0,
+	\]
+	gdzie $s$ to suma cyfr $n$ w rozwinięciu $p$-adycznym.
+	Wynika stąd, że $|x^{n-1} / n!| < 1$ i $|x^n/n!| < |x|$; dla $n \ge 2$:
+	\[
+		p^{-1/(p-1)} > |\exp_p(x) - 1| = |x| > |x^n/n!|.
+	\]
+	Korzystamy z lematu \ref{auctoris} dla $\log_p \circ \exp_p$.
+	Teraz złożenie w drugą stronę: $\log_p(1+x)$ podstawiamy do $\exp(X)$. Załóżmy więc, że $v_p(x) > 1/(p-1)$.
+	Jeśli $n > 1$, to
+	\begin{align*}
+		L & = v_p \left( \frac{(-x)^n}{-n} \right) - v_p(x) = (n-1) v_p(x) - v_p(n) \\
+		& > \frac{n-1}{p-1} - v_p(n) = (n-1) \left[ \frac{1}{p-1} - \frac{v_p(n)}{n-1}\right]
+	\end{align*}
+	Chcemy, by ostatni nawias był nieujemny.
+	Niech $n = p^v n'$ z $n ' \nmid p$.
+	Wtedy
+	\begin{align*}
+		\frac{v_p(n)}{n-1} & = \frac{v}{p^v n' -1 } \le \frac{v}{p^v - 1} \\
+		& = \frac{1}{p-1} \cdot \frac{v}{p^{v-1} + \ldots + p + 1} \le \frac{1}{p-1}.
+	\end{align*}
+	A zatem $|(-1)^{n+1} x^n/n| < |x|$ i używamy faktu \ref{ingentis}: $|\log_p(x)| = |x| < p^{-1/(p-1)}$ daje żądaną równość.
+\end{proof}
+
+Ostrożność była potrzebna: dla $p = 2$, $x = -2$ ,,wszystko'' zbiega, ale $\exp(\log_p(1+x)) = \exp(0) = 1 \neq -1$.
+
+Zajmiemy się szeregami dwumianowymi.
+W $\R$ funkcję $(1+X)^\alpha$ można rozwinąć w szereg potęgowy zbieżny dla $|x| < 1$:
+\[
+	(1+X)^\alpha = \mathfrak B(\alpha, X) = \sum_{n=0}^\infty {\alpha \choose n} X^n.
+\]
+
+Szereg ten jest kandydatem na $p$-adyczny wariant funkcji potęgowej, ciekawszy dla $\alpha \in \Z_p$ niż dla $\alpha \in \Q_p$.
+Ustalmy $\alpha$.
+Co możemy powiedzieć o współczynnikach szeregu $\mathfrak B$?
+
+\begin{fakt}
+	Jeśli $\alpha \in \Z_p$ i $n \ge 0$, to $(\alpha \textrm{ nad } n) \in \Z_p$.
+	Jeżeli do tego $|x| < 1$, to szereg $\mathfrak B(\alpha, x)$ jest zbieżny.
+\end{fakt}
+
+\begin{proof}
+	Dla każdego $n$ rozpatrzmy wielomian
+	\[
+		P_n(X) = \frac{X(X-1) \cdot \ldots \cdot (X-n+1)}{n!} \in \Q[X].
+	\]
+	Wielomiany określają ciągłe funkcje $\Q_p \to \Q_p$.
+	%Wiemy, że $C^m_n$ dla $m,n \in \Z_+$ jest liczbą całkowitą, zatem dla $\alpha \in \Z_+$ jest $P_n(\alpha) = C_n^\alpha \in \Z$.
+	Wiemy, że dla $\alpha \in \Z_+$ mamy $P_n(\alpha) \in \Z$.
+	Obraz $\Z_+$ przez $P_n$ zawiera się w $\Z$, zaś wzięcie domknięć zachowa zawieranie.
+
+	Innymi słowy, ciągła $P_n$ przerzuca $\Z_+$ w $\Z$.
+	Oznacza to, że domknięcie ($\Z_p$) przechodzi na domknięcie ($\Z_p$), co było do pokazania.
+	Druga część jest oczywista.
+\end{proof}
+
+Z równości formalnych szeregów potęgowych wynika, że dla $\alpha = a/b \in \Z_{(p)}$ i $|x| < 1$ prawdziwa jest poniższa równość:
+\[
+	\left(\mathfrak B\left(\frac ab, x\right)\right)^b = (1+x)^a.
+\]
+
+Zatem definicja $(1+x)^{a/b}:=\mathfrak B (a/b, x)$ ma sens.
+
+Chciałoby się przyjąć dla dowolnej $\alpha \in \Z_p$ oraz $x \in p\Z_p$, że $(1+x)^\alpha = \mathfrak B(\alpha, x)$.
+Problem w tym, że $p$-adyczna funkcja $\mathfrak B(a/b, x)$ nie zachowuje się jak jej rzeczywisty odpowiednik, nawet gdy $x$ jest wymierny i $1+x$ jest $b$-tą potęgą w $\Q$.
+
+\begin{przyklad}[Koblitz]
+	Jeśli $p = 7$, $\alpha = 1/2$, $x = 7/9$, to w $\R$ pierwiastek z $1+x$ jest równy $4/3$, ale w $\Q_7$ nie: $|x| = 1/7$, więc dla $n \ge 1$ jest
+	\[
+		\left|{1/2 \choose n} x^n\right| \le |x|^n = 7^{-n} < 1.
+	\]
+	To pociąga $(1+x)^{1/2} = 1 + \sum_{n = 1}^\infty (1/2 \textrm{ nad } n) x^n \in 1 + 7\Z_7$ oraz $|(1+x)^{1/2} - 1| < 1$.
+	Ale $|4/3 - 1| = 1$, więc pierwiastkiem jest $-4/3$.
+\end{przyklad}
+
+Ten sam szereg o wymiernych wyrazach może zbiegać w $\R$ i $\Q_p$, ale mieć różne granice (nawet, jeśli obie są wymierne), ponieważ topologie są znacząco różne.
+Wartość $\mathfrak B(\alpha, x)$ nie zależy od wyboru ciała, gdy $x \in \Q$ oraz $\alpha \in \Z$.
+
+
+\begin{fakt}
+	Niech $1+x$ będzie kwadratem $\frac ab$, gdzie $a, b > 0$ są względnie pierwsze, zaś $S$ to zbiór tych pierwszych liczb, dla których szereg $\mathfrak B(1/2,x)$ zbiega w $\Q_p$.
+	\begin{enumerate}
+		\item Jeśli $p$ jest nieparzystą pierwszą, to $p \in S$, wtedy i tylko wtedy gdy $p$ dzieli $a+b$ (wtedy $\mathfrak B(1/2,x) = -a/b$) lub $a-b$ (wtedy $a/b$).
+		\item Dalej, $2 \in S$, wtedy i tylko wtedy gdy $2 \nmid ab$; granicą w $\Q_2$ jest $a/b$ (gdy $4 \mid a - b$) lub $-a/b$ (jeśli $4 \mid a + b$).
+		\item Wreszcie $\infty \in S$ wtedy i tylko wtedy, gdy $0 < a/b < \sqrt{2}$, suma w $\R$ będzie zawsze równa $a/b$.
+		\item Zbiór $S$ jest zawsze niepusty.
+		Dla $x \in \{8, 16/9, 3, 5/4\}$ ma dokładnie jeden element.
+		\item Dla innych $x$ zawsze znajdą się dwie $p, q \in S$, że suma w $\Q_p$ jest różna od tej w $\Q_p$.
+	\end{enumerate}
+\end{fakt}
+
+\begin{proof}
+	Szczególny przypadek twierdzenia Bombieriego.
 \end{proof}
